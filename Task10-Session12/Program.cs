@@ -259,8 +259,39 @@ namespace Task10_Session12
 
             #region Transformation Operators
             // 1- Return a sequence of just the names of a list of products.
+            
+            var productNamesQuery = from p in ProductsList
+                                    select p.ProductName;
 
-            #endregion 
+            foreach (var productName in productNamesQuery)
+            {
+                Console.WriteLine(productName);
+
+            }
+
+            // 2- Produce a sequence of the uppercase and lowercase versions of each word in the original
+            //array(Anonymous Types).
+            String[] words = { "aPPLE", "BlUeBeRrY", "cHeRry" };
+            
+            var wordVariants = from w in words
+                                select new { Upper = w.ToUpper(), Lower = w.ToLower() };
+
+            foreach (var variant in wordVariants)
+            {
+                Console.WriteLine($"Upper: {variant.Upper}, Lower: {variant.Lower}");
+            }
+
+            // 3- Produce a sequence containing some properties of Products, including UnitPrice which is
+            //renamed to Price in the resulting type.
+            var productInfo = from p in ProductsList
+                              select new { p.ProductName, Price = p.UnitPrice };
+            foreach (var info in productInfo)
+            {
+                Console.WriteLine($"Product: {info.ProductName}, Price: {info.Price}");
+            }
+
+            // 4- 
+            #endregion
         }
     }
 }
